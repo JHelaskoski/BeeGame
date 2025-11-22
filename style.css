@@ -1,0 +1,30 @@
+body {
+    background: forestgreen;
+    font-family: Arial, sans-serif;
+}
+
+#bee {
+    width: 60px;
+    height: 60px;
+    background: yellow;
+    border-radius: 50%;
+    position: absolute;
+    top: 150px;
+    left: 150px;
+    border: 3px solid black;
+    transition: left 0.8s ease, top 0.8s ease;
+}
+
+.angry {
+    background: red !important;
+    border-color: darkred !important;
+    animation: shake 0.3s infinite;
+}
+
+@keyframes shake {
+    0% { transform: translate(0px, 0px); }
+    25% { transform: translate(3px, -px); }
+    50% { transform: translate(-3px, 3px); }
+    75% { transform: translate(3px, 3px); }
+    100% { transform: translate(-3px, -3px); }
+}
