@@ -24,12 +24,10 @@ body {
     background-position: center;
 
     position: absolute;
-    transition: left 0.8s ease, top 0.8s ease;
 }
 
 .angry {
-    background: red !important;
-    border-color: darkred !important;
+    background-image: url("abee.png") !important;
     animation: shake 0.3s infinite;
 }
 
@@ -39,4 +37,8 @@ body {
     50% { transform: translate(-3px, 3px); }
     75% { transform: translate(3px, 3px); }
     100% { transform: translate(-3px, -3px); }
+}
+
+.bee-smooth {
+    transition: left 0.8s ease, top 0.8s ease;
 }

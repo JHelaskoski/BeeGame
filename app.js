@@ -6,7 +6,7 @@ document.addEventListener("mousemove", function (e) {
     mouseY = e.clientY;
 });
 
-console.log("JavaScript is working!");
+console.log("Yay!");
 const bee = document.getElementById("bee");
 
 let tapCount = 0;
@@ -26,6 +26,8 @@ bee.onclick = function () {
         console.log("The bee did not like that");
         
         bee.classList.add("angry");
+        bee.classList.remove("bee-smooth");   // disable smooth for chase
+
 
         tapCount = 0;
 
@@ -52,19 +54,20 @@ bee.onclick = function () {
         dx /= distance;
         dy /= distance;
 
-        let speed = 150;
+        let speed = 10;
 
         bee.style.left = (bee.offsetLeft + dx * speed) + "px";
         bee.style.top = (bee.offsetTop + dy * speed) + "px";
+        clampBeeToScreen()
 
         if (Date.now() - startTime > chaseTime) {
             clearInterval(chaseInterval);
             bee.classList.remove("angry");
         }
 
-}, 150);
+}, 90);
 
-return;   
+    return;   
 
 }
 
@@ -73,5 +76,30 @@ return;
 
     bee.style.left = x + "px";
     bee.style.top = y + "px";
+    bee.classList.add("bee-smooth");  // smooth movement when not angry
 
-};
+    setTimeout(() => {
+        clampBeeToScreen();
+    }, 850);
+
+}
+
+function clampBeeToScreen() {
+    let beeWidth = bee.offsetWidth;
+    let beeHeight = bee.offsetHeight;
+
+    let maxX = window.innerWidth - beeWidth;
+    let maxY = window.innerHeight - beeHeight;
+
+    let x = bee.offsetLeft;
+    let y = bee.offsetTop;
+
+    if (x < 0) x = 0;
+    if (x > maxX) x = maxX;
+
+    if (y < 0) y = 0;
+    if (y > maxY) y = maxY;
+
+    bee.style.left = x + "px";
+    bee.style.top = y + "px";
+}
